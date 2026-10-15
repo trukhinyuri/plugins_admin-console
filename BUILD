@@ -1,4 +1,8 @@
-load("//tools/bzl:plugin.bzl", "gerrit_plugin")
+load(
+    "@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl",
+    "gerrit_plugin",
+    "gerrit_plugin_tests",
+)
 
 gerrit_plugin(
     name = "admin-console",
@@ -10,4 +14,13 @@ gerrit_plugin(
         "Implementation-URL: https://gerrit-review.googlesource.com/#/admin/projects/plugins/admin-console",
     ],
     resources = glob(["src/main/resources/**/*"]),
+)
+
+gerrit_plugin_tests(
+    name = "admin-console_tests",
+    srcs = glob(["src/test/java/**/*.java"]),
+    tags = ["admin-console"],
+    deps = [
+        ":admin-console__plugin",
+    ],
 )

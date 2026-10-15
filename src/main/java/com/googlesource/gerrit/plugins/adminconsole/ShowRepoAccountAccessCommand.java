@@ -114,8 +114,7 @@ public final class ShowRepoAccountAccessCommand extends SshCommand {
 
     Project.NameKey nameKey = Project.nameKey(projectName);
 
-    try {
-      MetaDataUpdate md = metaDataUpdateFactory.create(nameKey);
+    try (MetaDataUpdate md = metaDataUpdateFactory.create(nameKey)) {
       ProjectConfig config;
       config = projectConfigFactory.read(md);
 

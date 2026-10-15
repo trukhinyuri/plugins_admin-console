@@ -72,8 +72,7 @@ public final class ShowRepoAccessCommand extends SshCommand {
     permissionGroupWidth = wide ? Integer.MAX_VALUE : columns - 9 - 5 - 9;
 
     ProjectConfig config;
-    try {
-      MetaDataUpdate md = metaDataUpdateFactory.create(nameKey);
+    try (MetaDataUpdate md = metaDataUpdateFactory.create(nameKey)) {
       config = projectConfigFactory.read(md);
       for (AccessSection accessSection : config.getAccessSections()) {
 

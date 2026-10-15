@@ -125,7 +125,7 @@ public final class ShowAccountCommand extends SshCommand {
       stdout.println("Preferred Email:   " + account.account().preferredEmail());
       Optional<AccountState> accountState = accountCache.get(id);
       if (accountState.isPresent()) {
-        stdout.println("User Name:         " + accountState.get().userName().get());
+        stdout.println("User Name:         " + accountState.get().userName().orElse(""));
       }
       stdout.println("Active:            " + account.account().isActive());
       stdout.println("Registered on:     " + account.account().registeredOn());
